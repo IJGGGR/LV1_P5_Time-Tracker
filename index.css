@@ -1,3 +1,357 @@
+/* TODO: responsiveness for width 320px and up */
+
+/* Variables ------------------------------------------------------------------------------------ */
+
+:root {
+  /* card header colors */
+  --color-primary-blue: hsl(246, 80%, 60%); /* profile */
+  --color-primary-work: hsl(15, 100%, 70%);
+  --color-primary-play: hsl(195, 74%, 62%);
+  --color-primary-study: hsl(348, 100%, 68%);
+  --color-primary-exercise: hsl(145, 58%, 55%);
+  --color-primary-social: hsl(264, 64%, 52%);
+  --color-primary-self-care: hsl(43, 84%, 65%);
+  /* misc */
+  --color-neutral-very-dark-blue: hsl(226, 43%, 10%); /* body bg */
+  --color-neutral-dark-blue: hsl(235, 46%, 20%); /* card bg */
+  --color-neutral-desaturated-blue: hsl(235, 45%, 61%); /* inactive profile time spans */
+  --color-neutral-pale-blue: hsl(236, 100%, 87%); /* subtitles + dot menus */
+  /* white for text and hovered interact-ables */
+  /* hsl(236, 41%, 34%) - card bg hover */
+  --color-neutral-card-hover: hsl(236, 41%, 34%);
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+
+body {
+  background: var(--color-neutral-very-dark-blue);
+  color: white;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* the grid shorthand property can be a grid-template or grid-(auto/template)-(rows/columns) */
+
+/*
+#cell-1 > .isa-card {
+  background:
+    url("/images/icon-work.svg")
+      right 16px top -8px / auto
+      local padding-box no-repeat,
+    var(--color-primary-work);
+}
+*/
+
+.isa-cell-0 { grid-area: a; }
+.isa-cell-1 { grid-area: b; }
+.isa-cell-2 { grid-area: c; }
+.isa-cell-3 { grid-area: d; }
+.isa-cell-4 { grid-area: e; }
+.isa-cell-5 { grid-area: f; }
+.isa-cell-6 { grid-area: g; }
+
+.isa-main-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 32px;
+}
+
+.isa-card {
+  width: 100%;
+  height: 100%;
+  padding-top: 3rem;
+  /* hide lower corner bleed */
+  border-radius: 16px 16px 20px 20px;
+}
+
+.isa-main-grid > .isa-cell-0 > .isa-card {
+  padding-top: 0;
+  background: var(--color-neutral-dark-blue);
+  /* hide upper corner bleed */
+  border-radius: 20px 20px 16px 16px;
+}
+
+.isa-main-grid > .isa-cell-1 > .isa-card {
+  background: url("/images/icon-work.svg") right 16px top -8px / auto local padding-box no-repeat, var(--color-primary-work);
+}
+
+.isa-main-grid > .isa-cell-2 > .isa-card {
+  background: url("/images/icon-play.svg") right 16px top -4px / auto local padding-box no-repeat, var(--color-primary-play);
+}
+
+.isa-main-grid > .isa-cell-3 > .isa-card {
+  background: url("/images/icon-study.svg") right 16px top -8px / auto local padding-box no-repeat, var(--color-primary-study);
+}
+
+.isa-main-grid > .isa-cell-4 > .isa-card {
+  background: url("/images/icon-exercise.svg") right 16px top / auto local padding-box no-repeat, var(--color-primary-exercise);
+}
+
+.isa-main-grid > .isa-cell-5 > .isa-card {
+  background: url("/images/icon-social.svg") right 16px top -12px / auto local padding-box no-repeat, var(--color-primary-social);
+}
+
+.isa-main-grid > .isa-cell-6 > .isa-card {
+  background: url("/images/icon-self-care.svg") right 16px top -8px / auto local padding-box no-repeat, var(--color-primary-self-care);
+}
+
+.isa-zero-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+}
+
+.isa-card-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  padding: 32px;
+  column-gap: 16px;
+  background: var(--color-neutral-dark-blue);
+  border-radius: 16px;
+  align-items: center;
+}
+
+.isa-card-grid:hover {
+  background: var(--color-neutral-card-hover);
+  cursor: pointer;
+}
+
+.isa-card-grid > .isa-cell-0 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.isa-card-grid > .isa-cell-1 {
+  justify-self: right;
+}
+
+/* OVERRIDE */
+.isa-card:has(.isa-card-grid > .isa-cell-1:hover) .isa-card-grid:hover {
+  background: var(--color-neutral-dark-blue);
+}
+
+.isa-card-grid > .isa-cell-1:hover > img {
+  /* white filter */
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(1%) hue-rotate(208deg) brightness(104%) contrast(101%);
+  cursor: pointer;
+}
+
+.isa-card-grid > .isa-cell-2 {
+  font-size: 56px;
+  font-weight: 300;
+}
+
+.isa-card-grid > .isa-cell-3 {
+  font-size: 15px;
+  color: var(--color-neutral-pale-blue);
+}
+
+.isa-name-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  padding: 32px;
+  column-gap: 16px;
+  background: var(--color-primary-blue);
+  border-radius: 16px;
+}
+
+.isa-name-grid > .isa-cell-1 {
+  font-size: 15px;
+  color: var(--color-neutral-pale-blue);
+}
+
+.isa-time-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  padding: 32px;
+  row-gap: 20px;
+  color: var(--color-neutral-desaturated-blue);
+  font-size: 18px;
+}
+
+#btn-0:hover {
+  color: white;
+  cursor: pointer;
+}
+
+#btn-1:hover {
+  color: white;
+  cursor: pointer;
+}
+
+#btn-2:hover {
+  color: white;
+  cursor: pointer;
+}
+
+/* EXTRA SMALL -------------------------------- */
+
+main {
+  padding: 8px;
+}
+
+.isa-main-grid {
+  grid:
+    "a" auto
+    "b" auto
+    "c" auto
+    "d" auto
+    "e" auto
+    "f" auto
+    "g" auto
+    / 1fr;
+}
+
+.isa-zero-grid {
+  grid:
+    "a" 1fr
+    "b" auto
+    / 1fr;
+}
+
+.isa-card-grid {
+  grid:
+    "a b" auto
+    "c d" auto
+    / 1fr auto;
+}
+
+.isa-name-grid {
+  grid:
+    "a b" auto
+    "a c" auto
+    / auto 1fr;
+  align-items: center;
+}
+
+.isa-name-grid > .isa-cell-0 > img {
+  width: 64px;
+  height: 64px;
+  box-sizing: content-box;
+  border: 4px solid white;
+  border-radius: 50%;
+  /* filter: drop-shadow(0 4px 4px black); */
+}
+
+.isa-name-grid > .isa-cell-2 {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.isa-time-grid {
+  grid:
+    "a b c" auto
+    / auto auto auto;
+  justify-content: space-between;
+}
+
+/* SMALL -------------------------------------- */
+
+@media (min-width: 576px) {
+  main {
+    padding: 16px;
+  }
+}
+
+/* MEDIUM ------------------------------------- */
+
+@media (min-width: 768px) {
+  main {
+    padding: 32px;
+  }
+  .isa-main-grid {
+    grid:
+      "a b c" 1fr
+      "a d e" 1fr
+      "a f g" 1fr
+      / 1fr 1fr 1fr;
+    margin: auto;
+  }
+  .isa-card-grid {
+    grid:
+      "a b" auto
+      "c c" auto
+      "d d" auto
+      / 1fr auto;
+  }
+  .isa-name-grid {
+    grid:
+      "a" 1fr
+      "b" auto
+      "c" 1fr
+      / 1fr;
+    align-items: normal;
+  }
+  .isa-name-grid > .isa-cell-0 > img {
+    width: 78px;
+    height: 78px;
+  }
+  .isa-name-grid > .isa-cell-2 {
+    font-size: 40px;
+  }
+  .isa-time-grid {
+    grid:
+      "a" auto
+      "b" auto
+      "c" auto
+      / 1fr;
+    justify-content: normal;
+  }
+}
+
+@media (min-width: 768px) and (min-height: 864px) {
+  main {
+    height: 100vh;
+    display: flex;
+  }
+  .isa-main-grid {
+    max-height: 800px;
+  }
+}
+
+/* LARGE -------------------------------------- */
+
+@media (min-width: 992px) {
+  main {
+    width: 100vw;
+    /* height: 100vh; */
+    display: flex;
+  }
+  .isa-main-grid {
+    grid:
+      "a b c d" 1fr
+      "a e f g" 1fr
+      / 1fr 1fr 1fr 1fr;
+    max-width: 1110px;
+    /* max-height: 518px; */
+  }
+}
+
+@media (min-width: 992px) and (min-height: 582px) {
+  main {
+    height: 100vh;
+  }
+  .isa-main-grid {
+    max-height: 518px;
+  }
+}
+
+/* EXTRA LARGE -------------------------------- */
+
+/* @media (min-width: 1200px) {} */
+
+/* EXTRA EXTRA LARGE -------------------------- */
+
+/* @media (min-width: 1400px) {} */
+
+/* Misc ----------------------------------------------------------------------------------------- */
+
 .attribution {
   font-size: 11px;
   text-align: center;

@@ -16,5 +16,4 @@
 .prettierignore
 
 # isa
-/_design/
-/_figma/
+/_ref/
